@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunjian.repository.ClassesRepository">
+
+    <!-- 一对多 -->
+    <resultMap id="classMap" type="com.sunjian.entity.Classes">
+        <id property="id" column="cid"></id>
+        <result property="name" column="cname"></result>
+        <collection property="students" ofType="com.sunjian.entity.Student">
+            <id property="id" column="sid"></id>
+            <result property="name" column="sname"></result>
+            <result property="score" column="score"></result>
+            <result property="tel" column="tel"></result>
+            <result property="address" column="address"></result>
+        </collection>
+    </resultMap>
+
+   <select id="findClassById" parameterType="java.lang.Integer" resultMap="classMap">
+       select c.id cid, c.name cname, s.id sid, s.name sname, s.score, s.tel, s.address from classes c, student s where s.cid = c.id and c.id = #{id}
+   </select>
+</mapper>

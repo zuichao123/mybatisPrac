@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunjian.repository.CourseRepository">
+
+    <!-- 多对多 -->
+    <resultMap id="courseMap" type="com.sunjian.entity.Course">
+        <id property="id" column="courseid"></id>
+        <result property="name" column="coursename"></result>
+        <collection property="students" ofType="com.sunjian.entity.Student">
+            <id property="id" column="sid"></id>
+            <result property="name" column="sname"></result>
+            <result property="score" column="score"></result>
+            <result property="tel" column="tel"></result>
+            <result property="address" column="address"></result>
+        </collection>
+        <collection property="classes" ofType="com.sunjian.entity.Classes">
+            <id property="id" column="classid"></id>
+            <result property="name" column="classname"></result>
+        </collection>
+    </resultMap>
+
+   <select id="findCourseById" parameterType="java.lang.Integer" resultMap="courseMap">
+        select s.id sid, s.name sname, score, tel, address, c.id courseid, c.name coursename, cl.id classid, cl.name classname from student s, course c, classes cl, course_student cs where cl.id = s.cid and cs.sid = s.id and cs.cid = c.id and c.id = #{id};
+   </select>
+</mapper>
