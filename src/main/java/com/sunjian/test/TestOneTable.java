@@ -85,7 +85,6 @@ public class TestOneTable {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         String statement = "com.sunjian.mapper.UserMapper.findById";
         User user = sqlSession.selectOne(statement, 1);
-
         System.out.println(user);
     }
 }
