@@ -1,5 +1,7 @@
 package com.sunjian.entity;
 
+import java.util.List;
+
 /**
  * @author sunjian
  * @date 2020/3/22 9:59
@@ -9,6 +11,15 @@ public class User {
     private String username;
     private String password;
     private Integer age;
+    private List<Integer> ids;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
 
     @Override
     public String toString() {

@@ -2,6 +2,15 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+    <!-- 打印SQL语句 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- 开启延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 开启二级缓存 -->
+        <setting name="cacheEnabled" value="true"></setting>
+    </settings>
+
     <!-- 配置 MyBatis 数据源 -->
     <environments default="development">
         <environment id="development">
@@ -21,6 +30,7 @@
         <!-- 单表 -->
         <mapper resource="com/sunjian/mapper/UserMapper.xml"></mapper>
         <mapper resource="com/sunjian/repository/UserRepository.xml"></mapper>
+        <mapper resource="com/sunjian/repository/UserRepositoryDynamicSQL.xml"></mapper>
 
         <!-- 多表 一对一 -->
         <mapper resource="com/sunjian/repository/StudentRepository.xml"></mapper>
@@ -28,6 +38,11 @@
         <mapper resource="com/sunjian/repository/ClassesRepository.xml"></mapper>
         <!-- 多表 多对多 -->
         <mapper resource="com/sunjian/repository/CourseRepository.xml"></mapper>
+
+
+        <mapper resource="com/sunjian/repository/OrderRepository.xml"></mapper>
+        <mapper resource="com/sunjian/repository/CustomerRepository.xml"></mapper>
+
     </mappers>
 
 </configuration>
